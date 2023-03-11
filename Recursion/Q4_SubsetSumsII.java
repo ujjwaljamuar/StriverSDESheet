@@ -1,8 +1,9 @@
+//package Recursion;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-//package Recursion;
 
 public class Q4_SubsetSumsII {
 
@@ -26,7 +27,7 @@ public class Q4_SubsetSumsII {
 
         List<List<Integer>> result = new ArrayList<>();
         findSubsets(0, arr, new ArrayList<>(), result);
-        
+
         return result;
     }
 
