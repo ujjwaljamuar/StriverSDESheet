@@ -4,9 +4,9 @@ import java.util.*;
 
 public class Q2_CombinationSumII {
 
-    static void findCombinationII(int index, int arr[], int target, List<List<Integer>> ans, List<Integer> comb) {
+    static void findCombinationII(int index, int arr[], int target, List<Integer> ds, List<List<Integer>> ans) {
         if(target == 0){
-            ans.add(new ArrayList<>(comb));
+            ans.add(new ArrayList<>(ds));
             return;
         }
 
@@ -14,9 +14,9 @@ public class Q2_CombinationSumII {
             if(i > index && arr[i] == arr[i-1]) continue;
             if(arr[i] > target) break;
 
-            comb.add(arr[i]);
-            findCombinationII(i + 1, arr, target - arr[i], ans, comb);
-            comb.remove(comb.size() - 1);
+            ds.add(arr[i]);
+            findCombinationII(i + 1, arr, target - arr[i], ds, ans);
+            ds.remove(ds.size() - 1);
         }
     }
 
@@ -24,16 +24,16 @@ public class Q2_CombinationSumII {
         List<List<Integer>> ans = new ArrayList<>();
         Arrays.sort(arr);
 
-        findCombinationII(0, arr, target, ans, new ArrayList<>());
+        findCombinationII(0, arr, target,new ArrayList<>(), ans );
         return ans;
     }
 
     public static void main(String[] args) {
-        int arr[] = { 1,1,1,2,2 };
-        int target = 4;
+        int arr[] = { 45 };
+        int target = 5;
 
-        // System.out.println(returnCombinationSumII(arr, target));
-        List < List < Integer >> comb = returnCombinationSumII(arr,target);
-        System.out.println(comb.toString().replace(",", " "));
+        System.out.println(returnCombinationSumII(arr, target));
+        
     }
+        
 }

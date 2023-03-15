@@ -4,8 +4,8 @@ import java.util.*;
 
 public class Q1_CombinationSum {
 
-    static void findCombination(int index, int[] arr, int target, List<Integer> ds, List<List<Integer>> result){
-        if(index == arr.length){
+    static void findCombination(int index, ArrayList<Integer> arr, int target, List<Integer> ds, ArrayList<ArrayList<Integer>> result){
+        if(index == arr.size()){
             if(target == 0){
                 result.add(new ArrayList<>(ds));
             }
@@ -13,9 +13,9 @@ public class Q1_CombinationSum {
         }
 
         // picked
-        if(arr[index] <= target){
-            ds.add(arr[index]);
-            findCombination(index, arr, target-arr[index], ds, result);
+        if(arr.get(index) <= target){
+            ds.add(arr.get(index));
+            findCombination(index, arr, target-arr.get(index), ds, result);
             ds.remove(ds.size() - 1);
         }
 
@@ -23,8 +23,8 @@ public class Q1_CombinationSum {
         findCombination(index+1, arr, target, ds, result);
     }
 
-    static List<List<Integer>> comboSum(int[] arr, int target){
-        List<List<Integer>> result = new ArrayList<>();
+    static ArrayList<ArrayList<Integer>> comboSum(ArrayList<Integer> arr, int target){
+        ArrayList<ArrayList<Integer>> result = new ArrayList<>();
 
         findCombination(0, arr, target, new ArrayList<>(), result);
 
@@ -32,9 +32,14 @@ public class Q1_CombinationSum {
     }
 
     public static void main(String[] args) {
-        int[] candidates = {2, 3, 6, 7};
+        ArrayList<Integer> candidates = new ArrayList<>();
+        candidates.add(8);
+        candidates.add(1);
+        candidates.add(8);
+        candidates.add(6);
+        candidates.add(8);
 
-        int target = 7;
+        int target = 12;
 
         System.out.println(comboSum(candidates, target).toString());
     }
