@@ -1,21 +1,21 @@
 package LinkedList_SDESheet;
 
-class Node{
+class NodeSLL{
     int val;
-    Node next;
+    NodeSLL next;
 
-    Node(int x){
+    NodeSLL(int x){
         val = x;
         next = null;
     }
 }
 
 public class SinglyLinkedList {
-    Node head = null;
-    Node tail = null;
+    NodeSLL head = null;
+    NodeSLL tail = null;
 
-    static void printLL(Node head){
-        Node curr = head;
+    static void printLL(NodeSLL head){
+        NodeSLL curr = head;
         while(curr != null){
             System.out.print(curr.val + " -> ");
             curr = curr.next;
@@ -24,7 +24,7 @@ public class SinglyLinkedList {
     }
 
     void insertAtLast(int value){
-        Node newNode = new Node(value);
+        NodeSLL newNode = new NodeSLL(value);
 
         if(head == null){
             head = newNode;
@@ -37,7 +37,7 @@ public class SinglyLinkedList {
 
     void insertAtFirst(int value){
         // first create a node
-        Node newNode = new Node(value);
+        NodeSLL newNode = new NodeSLL(value);
 
         // point next of new node to head of created LL
         newNode.next = head;
