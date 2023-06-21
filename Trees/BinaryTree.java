@@ -1,10 +1,10 @@
 package Trees;
 
-class Node {
+class TreeNode {
     int data;
-    Node left, right;
+    TreeNode left, right;
 
-    public Node(int key) {
+    public TreeNode(int key) {
         this.data = key;
         left = null;
         right = null;
@@ -14,11 +14,11 @@ class Node {
 public class BinaryTree {
     public static void main(String[] args) {
 
-        Node root = new Node(1);
+        TreeNode root = new TreeNode(1);
 
-        root.left = new Node(4);
-        root.right = new Node(5);
+        root.left = new TreeNode(4);
+        root.right = new TreeNode(5);
 
-        root.left.right = new Node(7);
+        root.left.right = new TreeNode(7);
     }
 }
