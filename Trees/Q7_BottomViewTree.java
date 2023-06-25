@@ -55,7 +55,7 @@ public class Q7_BottomViewTree {
 }
 
 class NodeBV {
-    int data, hd;
+    int data, hd;// horizontal distance
     NodeBV left, right;
 
     public NodeBV(int key) {
