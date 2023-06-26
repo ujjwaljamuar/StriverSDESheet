@@ -43,7 +43,6 @@ public class Q9_EveryOrderTrav {
                 post.add(it.node.data);
             }
         }
-
     }
 
     public static void main(String[] args) {
@@ -61,9 +60,21 @@ public class Q9_EveryOrderTrav {
 
         allOrder(root, pre, in, post);
 
-        System.out.println("Pre Order: " + pre);
-        System.out.println("In order: " + in);
-        System.out.println("Post Order: " + post);
+        System.out.println("The preorder Traversal is : ");
+        for (int nodeVal : pre) {
+            System.out.print(nodeVal + " ");
+        }
+        System.out.println();
+        System.out.println("The inorder Traversal is : ");
+        for (int nodeVal : in) {
+            System.out.print(nodeVal + " ");
+        }
+        System.out.println();
+        System.out.println("The postorder Traversal is : ");
+        for (int nodeVal : post) {
+            System.out.print(nodeVal + " ");
+        }
+        System.out.println();
     }
 }
 
