@@ -3,16 +3,6 @@ package Trees;
 import java.util.LinkedList;
 import java.util.Queue;
 
-class Pairr {
-    TreeNode node;
-    int num;
-
-    public Pairr(TreeNode _node, int _num) {
-        this.node = _node;
-        this.num = _num;
-    }
-}
-
 public class Q12_WidthOfBinaryTree {
 
     static int widthOfBinaryTree(TreeNode root) {
@@ -59,5 +49,16 @@ public class Q12_WidthOfBinaryTree {
 
         int maxWidth = widthOfBinaryTree(root);
         System.out.println("The maximum width of the Binary Tree is " + maxWidth);
+    }
+}
+
+
+class Pairr {
+    TreeNode node;
+    int num;
+
+    public Pairr(TreeNode _node, int _num) {
+        this.node = _node;
+        this.num = _num;
     }
 }
