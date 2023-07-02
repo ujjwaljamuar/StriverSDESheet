@@ -31,6 +31,34 @@ public class Q12_LevelOrder {
 
     }
 
+    static List<List<Integer>> levelOrderTrav1(TreeNode root) {
+        List<List<Integer>> levelOrder = new ArrayList<>();
+        Queue<TreeNode> q = new LinkedList<>();
+
+        if (root == null)
+            return levelOrder;
+
+        q.offer(root);
+
+        while (!q.isEmpty()) {
+            int levelNumber = q.size();
+            List<Integer> subList = new ArrayList<>();
+
+            for (int i = 0; i < levelNumber; i++) {
+                if (q.peek().left != null)
+                    q.offer(q.peek().left);
+                if (q.peek().right != null)
+                    q.offer(q.peek().right);
+
+                subList.add(q.poll().data);
+            }
+
+            levelOrder.add(subList);
+        }
+
+        return levelOrder;
+    }
+
     public static void main(String[] args) {
         TreeNode root = new TreeNode(1);
         root.left = new TreeNode(2);
@@ -41,5 +69,6 @@ public class Q12_LevelOrder {
         root.right.right = new TreeNode(7);
 
         System.out.println(levelOrderTrav(root));
+        System.out.println(levelOrderTrav1(root));
     }
 }
