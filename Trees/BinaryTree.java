@@ -4,11 +4,18 @@ class TreeNode {
     int data;
     TreeNode left, right;
 
+    public TreeNode(){}
+
     public TreeNode(int key) {
         this.data = key;
-        left = null;
-        right = null;
     }
+
+    public TreeNode(int key, TreeNode _left, TreeNode _right) {
+        this.data = key;
+        this.left = _left;
+        this.right = _right;
+    }
+
 }
 
 public class BinaryTree {
