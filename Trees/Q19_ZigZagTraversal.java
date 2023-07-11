@@ -42,6 +42,48 @@ public class Q19_ZigZagTraversal {
         return ds;
     }
 
+    static ArrayList<Integer> zigzagLevelOrder2(TreeNode root) {
+        Queue<TreeNode> q = new LinkedList<>();
+        ArrayList<Integer> ds = new ArrayList<>();
+
+        if (root == null)
+            return ds;
+
+        q.offer(root);
+
+        boolean isLeftToRight = true;
+
+        while (!q.isEmpty()) {
+            int level = q.size();
+            ArrayList<Integer> subList = new ArrayList<>();
+
+            for (int i = 0; i < level; i++) {
+                if (q.peek().left != null) {
+                    q.offer(q.peek().left);
+                }
+
+                if (q.peek().right != null) {
+                    q.offer(q.peek().right);
+                }
+
+                if (isLeftToRight) {
+                    subList.add(q.poll().data);
+                } else {
+                    subList.add(0, q.poll().data);
+                }
+            }
+
+            for (int val : subList) {
+                ds.add(val);
+            }
+
+            isLeftToRight = !isLeftToRight;
+
+        }
+
+        return ds;
+    }
+
     public static void main(String[] args) {
         int i, j;
         TreeNode root = new TreeNode(3);
@@ -58,6 +100,8 @@ public class Q19_ZigZagTraversal {
             }
             System.out.println();
         }
+
+        System.out.println(zigzagLevelOrder2(root));
 
     }
 }
