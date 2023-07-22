@@ -1,6 +1,6 @@
 package Trees_BST;
 
-public class Q6_KthLargestElementBST {
+public class Q7_KthLargestElementBST {
     static int counter = 0, node = 0;
 
     static int kthLargest(TreeNode root, int k) {
