@@ -4,25 +4,25 @@ import java.util.ArrayList;
 
 public class Q2_DFS_Graph {
 
-    static void dfsHelper(int node, boolean[] isVisited,  ArrayList<ArrayList<Integer>> adjList, ArrayList<Integer> bfs){
+    static void dfsHelper(int node, boolean[] isVisited,  ArrayList<ArrayList<Integer>> adjList, ArrayList<Integer> dfs){
         isVisited[node] = true;
-        bfs.add(node);
+        dfs.add(node);
 
         for(Integer it: adjList.get(node)){
             if(!isVisited[it]){
-                dfsHelper(it, isVisited, adjList, bfs);
+                dfsHelper(it, isVisited, adjList, dfs);
             }
         }
     }
     static ArrayList<Integer> dfs(int V, ArrayList<ArrayList<Integer>> adjList){
         boolean[] isVisited = new boolean[V+1];
-        ArrayList<Integer> bfs = new ArrayList<>();
+        ArrayList<Integer> dfs = new ArrayList<>();
 
         // 0 based indexing
         isVisited[0] = true;
 
-        dfsHelper(0, isVisited, adjList, bfs);
-        return bfs;
+        dfsHelper(0, isVisited, adjList, dfs);
+        return dfs;
     }
 
     static void addAdjList(int u, int v, ArrayList<ArrayList<Integer>> adjList) {
