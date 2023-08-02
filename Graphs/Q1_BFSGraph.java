@@ -6,7 +6,7 @@ public class Q1_BFSGraph {
     public static ArrayList<Integer> bfsTraversal(int N, ArrayList<ArrayList<Integer>> adj) {
         ArrayList<Integer> bfs = new ArrayList<>();
         Queue<Integer> q = new LinkedList<>();
-        boolean[] isVisited = new boolean[N];
+        boolean[] isVisited = new boolean[adj.size()];
 
         // starting node is 1
         q.add(1);
@@ -97,9 +97,9 @@ public class Q1_BFSGraph {
 
         System.out.println("Adjacency List : " + adjList);
 
-        // n+1 vertexes
+        // n+1 vertexes because of 1 based indexing
         System.out.println("BFS : " + bfsTraversal(n + 1, adjList));
-        
+
         System.out.println("BFS : " + bfsTraversalMatrix(n + 1, adjMatrix));
 
     }
