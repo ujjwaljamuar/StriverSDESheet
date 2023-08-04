@@ -15,7 +15,7 @@ public class AdjacencyGraphMatrix {
     }
 
     public static void main(String[] args) {
-        int n = 5, m = 5;
+        int n = 5;
         int[][] adj = new int[n + 1][n + 1];
 
         addUnDirected(adj, 1, 2);

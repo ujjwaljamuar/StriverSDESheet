@@ -16,7 +16,7 @@ public class AdjacencyGraphList {
     }
 
     public static void main(String[] args) {
-        int n = 5, m = 5;
+        int n = 5;
         ArrayList<ArrayList<Integer>> adjUD = new ArrayList<>(); // Un-directed
         ArrayList<ArrayList<Integer>> adjD = new ArrayList<>(); // directed
 
