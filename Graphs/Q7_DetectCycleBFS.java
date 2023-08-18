@@ -5,8 +5,6 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 
-import org.w3c.dom.Node;
-
 public class Q7_DetectCycleBFS {
 
     static boolean isCyclic(ArrayList<ArrayList<Integer>> adj, int V) {
