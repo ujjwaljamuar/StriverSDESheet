@@ -2,7 +2,8 @@ public class BinarySearch {
     int binarySearchIterative(int[] arr, int length, int target) {
         int mid, low = 0, high = length - 1;
         while (low <= high) {
-            mid = low + ((high - low) / 2);
+            // mid = low + ((high - low) / 2);
+            mid = low + ((high - low) >> 1);
 
             if (arr[mid] == target) {
                 return mid;
@@ -25,7 +26,8 @@ public class BinarySearch {
             return -1;
         }
 
-        int mid = low + ((high - low) / 2);
+        // int mid = low + ((high - low) / 2);
+        int mid = low + ((high - low) >>  1);
         if (arr[mid] == target) {
             return mid;
         } else if (target > arr[mid]) {
