@@ -25,3 +25,9 @@ class Q9_MinInSortedRotated{
         System.out.println(bs.findMin(arr));
     }
 }
+
+
+// take a max value
+// check which part is sorted
+// if left is sorted low will be the lowest
+// if right is sorted mid will be the lowest
