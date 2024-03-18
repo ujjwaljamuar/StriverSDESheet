@@ -18,6 +18,7 @@ public class Q16_KokoEatingBananas {
     int minEatingSpeed(int[] piles, int h) {
         int n = piles.length;
         int low = 1, high = maximumBananas(piles, n), mid;
+        // int ans = Integer.MIN_VALUE;
 
         while (low <= high) {
             mid = low + ((high - low) / 2);
@@ -29,6 +30,7 @@ public class Q16_KokoEatingBananas {
             }
         }
 
+        // return ans;
         return low;
     }
 
