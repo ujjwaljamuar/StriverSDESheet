@@ -18,8 +18,8 @@ public class Q21_AggresiveCows {
             }
         }
 
-        return high;
-        // return ans;
+        // return high;
+        return ans;
     }
 
     int bruteAgressiveCows(int[] arr, int cows) {
