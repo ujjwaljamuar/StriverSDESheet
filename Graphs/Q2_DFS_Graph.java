@@ -4,50 +4,44 @@ import java.util.ArrayList;
 
 public class Q2_DFS_Graph {
 
-    static void dfsHelper(int node, boolean[] isVisited,  ArrayList<ArrayList<Integer>> adjList, ArrayList<Integer> dfs){
+    void dfsHelper(int node, boolean[] isVisited, ArrayList<Integer> dfs, ArrayList<ArrayList<Integer>> adjList){
         isVisited[node] = true;
         dfs.add(node);
 
-        for(Integer it: adjList.get(node)){
-            if(!isVisited[it]){
-                dfsHelper(it, isVisited, adjList, dfs);
+        for (int i : adjList.get(node)) {
+            if(isVisited[i] == false){
+                dfsHelper(i, isVisited, dfs, adjList);
             }
         }
     }
-    static ArrayList<Integer> dfs(int V, ArrayList<ArrayList<Integer>> adjList){
-        boolean[] isVisited = new boolean[V+1];
+
+    ArrayList<Integer> dfsTraversal(int elements, ArrayList<ArrayList<Integer>> adjList){
+        boolean[] isVisited = new boolean[elements];
         ArrayList<Integer> dfs = new ArrayList<>();
 
-        // 0 based indexing
         isVisited[0] = true;
+        dfsHelper(0, isVisited, dfs, adjList);
 
-        dfsHelper(0, isVisited, adjList, dfs);
         return dfs;
     }
 
-    static void addAdjList(int u, int v, ArrayList<ArrayList<Integer>> adjList) {
-        adjList.get(u).add(v);
-        adjList.get(v).add(u);
-    }
-
     public static void main(String[] args) {
+        Q2_DFS_Graph graph = new Q2_DFS_Graph(); 
+
         int n = 5;
-        ArrayList<ArrayList<Integer>> adjList = new ArrayList<>();
-
-        // because of 0 based indexing <
-        for (int i = 0; i < 5; i++) {
-            adjList.add(new ArrayList<>());
+        ArrayList < ArrayList < Integer >> adj = new ArrayList < > ();
+        for (int i = 0; i < n; i++) {
+            adj.add(new ArrayList < > ());
         }
-
-        // adding adjacency List
-        addAdjList(0, 1, adjList);
-        addAdjList(0, 2, adjList);
-        addAdjList(0, 4, adjList);
-        addAdjList(4, 3, adjList);
-
-        System.out.println(adjList);
-
-        System.out.println(dfs(n, adjList));
+        adj.get(0).add(2);
+        adj.get(2).add(0);
+        adj.get(0).add(1);
+        adj.get(1).add(0);
+        adj.get(0).add(3);
+        adj.get(3).add(0);
+        adj.get(2).add(4);
+        adj.get(4).add(2);
         
+        System.out.println(graph.dfsTraversal(n, adj));        
     }
 }
