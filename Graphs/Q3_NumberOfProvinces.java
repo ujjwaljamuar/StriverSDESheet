@@ -3,7 +3,10 @@ package Graphs;
 import java.util.ArrayList;
 
 public class Q3_NumberOfProvinces {
-    static int numofProvinces(ArrayList<ArrayList<Integer>> adj, int V) {
+    static int numofProvinces(ArrayList<ArrayList<Integer>> adjMat, int V) {
+
+        // if V is not given then V = adjMat.length;
+
         ArrayList<ArrayList<Integer>> adjList = new ArrayList<>();
 
         for (int i = 0; i < V; i++) {
@@ -11,12 +14,12 @@ public class Q3_NumberOfProvinces {
         }
 
         // convert matrix to list
-        for(int i = 0;i<V;i++) {
-            for(int j = 0;j<V;j++) {
-                // self nodes are not considered 
-                if(adj.get(i).get(j) == 1 && i != j) {
-                    adjList.get(i).add(j); 
-                    adjList.get(j).add(i); 
+        for (int i = 0; i < V; i++) {
+            for (int j = 0; j < V; j++) {
+                // self nodes are not considered
+                if (adjMat.get(i).get(j) == 1 && i != j) {
+                    adjList.get(i).add(j);
+                    adjList.get(j).add(i);
                 }
             }
         }
@@ -64,5 +67,6 @@ public class Q3_NumberOfProvinces {
         System.out.println(adj);
 
         System.out.println(numofProvinces(adj, 3));
+
     }
 }
