@@ -4,84 +4,82 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class Q6_RottenOranges {
-    static int orangesRotting(int[][] grid) {
-        int n = grid.length;
-        int m = grid[0].length;
-        // n x m
-        Queue<Pairr> q = new LinkedList<>();
-        // n x m
-        int[][] vis = new int[n][m];
-        int cntFresh = 0;
+    int rottingOranges(int[][] grid) {
+        if (grid == null || grid.length == 0) {
+            return 0;
+        }
 
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < m; j++) {
-                // if cell contains rotten orange
+        int rows = grid.length;
+        int cols = grid[0].length;
+
+        Queue<int[]> q = new LinkedList<>();
+        int count_fresh = 0;
+
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
                 if (grid[i][j] == 2) {
-                    q.add(new Pairr(i, j, 0));
-                    // mark as visited (rotten) in visited array
-                    vis[i][j] = 2;
-                }
-                // if not rotten
-                else {
-                    vis[i][j] = 0;
+                    q.offer(new int[] { i, j });
                 }
 
-                // count fresh oranges
-                if (grid[i][j] == 1)
-                    cntFresh++;
+                if (grid[i][j] != 0) {
+                    count_fresh++;
+                }
             }
         }
 
-        int tm = 0;
-        // delta row and delta column
-        int drow[] = { -1, 0, +1, 0 };
-        int dcol[] = { 0, 1, 0, -1 };
-        int cnt = 0;
+        if (count_fresh == 0)
+            return 0;
 
-        // until the queue becomes empty
+        int countMin = 0, count = 0;
+
+        int[] delrow = { -1, 0, 1, 0 };
+        int[] delcol = { 0, 1, 0, -1 };
+
         while (!q.isEmpty()) {
-            int r = q.peek().row;
-            int c = q.peek().col;
-            int t = q.peek().time;
-            tm = Math.max(tm, t);
-            q.remove();
-            // exactly 4 neighbours
-            for (int i = 0; i < 4; i++) {
-                int nrow = r + drow[i];
-                int ncol = c + dcol[i];
-                // check for valid coordinates and
-                // then for unvisited fresh orange
-                if (nrow >= 0 && nrow < n && ncol >= 0 && ncol < m &&
-                        vis[nrow][ncol] == 0 && grid[nrow][ncol] == 1) {
-                    // push in queue with timer increased
-                    q.add(new Pairr(nrow, ncol, t + 1));
-                    // mark as rotten
-                    vis[nrow][ncol] = 2;
-                    cnt++;
+            int size = q.size();
+
+            count += size;
+
+            for (int i = 0; i < size; i++) {
+                int[] loc = q.poll();
+
+                for (int j = 0; j < 4; j++) {
+                    int x = loc[0] + delrow[j];
+                    int y = loc[1] + delcol[j];
+
+                    if (x < 0 || y < 0 || x >= rows || y >= cols || grid[x][y] == 0 || grid[x][y] == 2) {
+                        continue;
+                    }
+
+                    grid[x][y] = 2;
+
+                    q.offer(new int[] { x, y });
                 }
+            }
+
+            if (q.size() != 0) {
+                countMin++;
             }
         }
 
-        // if all oranges are not rotten
-        if (cnt != cntFresh)
-            return -1;
-        return tm;
+        return count_fresh == count ? countMin : -1;
     }
 
     public static void main(String[] args) {
-        int[][] grid = { { 0, 1, 2 }, { 0, 1, 2 }, { 2, 1, 1 } };
+        Q6_RottenOranges graph = new Q6_RottenOranges();
 
-        int ans = orangesRotting(grid);
-        System.out.println(ans);
+        int[][] grid = { { 2, 1, 1 }, { 1, 1, 0 }, { 0, 1, 1 } };
+
+        System.out.println(graph.rottingOranges(grid));
     }
 }
 
-class Pairr {
-    int row, col, time;
+// class Pairr {
+// int row, col, time;
 
-    public Pairr(int _row, int _col, int _time) {
-        this.row = _row;
-        this.col = _col;
-        this.time = _time;
-    }
-}
+// public Pairr(int _row, int _col, int _time) {
+// this.row = _row;
+// this.col = _col;
+// this.time = _time;
+// }
+// }
