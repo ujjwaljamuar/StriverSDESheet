@@ -4,10 +4,12 @@ public class Q5_FloodFillAlgo {
 
     private void dfs(int row, int col, int[][] ans, int[][] image, int newColor, int[] delrow, int[] delCol,
             int initialColor) {
+        // mark the initial color to new color
         ans[row][col] = newColor;
         int n = image.length;
         int m = image[0].length;
-
+        
+        // we have to go exact 4 adjacent elements
         for (int i = 0; i < 4; i++) {
             int nRow = row + delrow[i];
             int nCol = col + delCol[i];
@@ -22,12 +24,16 @@ public class Q5_FloodFillAlgo {
     }
 
     int[][] floodFill(int[][] image, int sr, int sc, int newColor) {
+        // get the initial color
         int initialColor = image[sr][sc];
+        // make a copy of data to do changes and return
         int[][] ans = image;
 
+        // find adjacent rows and columns using delrow, delcol, technique
         int[] delrow = { -1, 0, 1, 0 };
         int[] delCol = { 0, 1, 0, -1 };
 
+        // start from initial color and go to its depth
         dfs(sr, sc, ans, image, newColor, delrow, delCol, initialColor);
 
         return ans;
