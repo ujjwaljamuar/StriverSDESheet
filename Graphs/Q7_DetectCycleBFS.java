@@ -26,7 +26,7 @@ public class Q7_DetectCycleBFS {
         q.add(new Pairrr(s, -1));
         visited[s] = true;
 
-        // until the queue is empty
+        // until the queue is emptyy
         while (!q.isEmpty()) {
             // source node and its parent node
             int node = q.peek().first;
