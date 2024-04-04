@@ -7,21 +7,7 @@ import java.util.Queue;
 
 public class Q7_DetectCycleBFS {
 
-    static boolean isCyclic(ArrayList<ArrayList<Integer>> adj, int V) {
-        boolean vis[] = new boolean[V];
-        Arrays.fill(vis, false);
-        int parent[] = new int[V];
-        Arrays.fill(parent, -1);
-
-        for(int i=0;i<V;i++)
-            if(vis[i]==false) 
-                if(detectCycle(i, vis, parent, adj))
-                    return true;
-    
-        return false;
-    }
-
-    static boolean detectCycle(int s, boolean[] visited, int[] parent, ArrayList<ArrayList<Integer>> adj) {
+    boolean detectCycle(int s, boolean[] visited, int[] parent, ArrayList<ArrayList<Integer>> adj) {
         Queue<Pairrr> q = new LinkedList<>(); // BFS
         q.add(new Pairrr(s, -1));
         visited[s] = true;
@@ -49,7 +35,22 @@ public class Q7_DetectCycleBFS {
         return false;
     }
 
+    boolean isCyclic(ArrayList<ArrayList<Integer>> adj, int V) {
+        boolean vis[] = new boolean[V];
+        Arrays.fill(vis, false);
+        int parent[] = new int[V];
+        Arrays.fill(parent, -1);
+
+        for (int i = 0; i < V; i++)
+            if (vis[i] == false)
+                if (detectCycle(i, vis, parent, adj))
+                    return true;
+
+        return false;
+    }
+
     public static void main(String[] args) {
+        Q7_DetectCycleBFS graph = new Q7_DetectCycleBFS();
         ArrayList<ArrayList<Integer>> adj = new ArrayList<>();
         for (int i = 0; i < 4; i++) {
             adj.add(new ArrayList<>());
@@ -59,7 +60,7 @@ public class Q7_DetectCycleBFS {
         adj.get(2).add(3);
         adj.get(3).add(2);
 
-        boolean ans = isCyclic(adj, 4);
+        boolean ans = graph.isCyclic(adj, 4);
         if (ans)
             System.out.println("1");
         else
