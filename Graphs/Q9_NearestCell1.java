@@ -14,6 +14,7 @@ public class Q9_NearestCell1 {
 
         Queue<Node> q = new LinkedList<>();
 
+        // add all elements with 1 in queue and mark them visited
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
                 if (mat.get(i).get(j) == 1) {
@@ -32,14 +33,17 @@ public class Q9_NearestCell1 {
             int steps = q.peek().third;
 
             q.remove();
+            // dist will be the steps, because it works vice versa, dis bw a-b and b-a will be same
             disMat.get(row).set(col, steps);
 
             for (int i = 0; i < 4; i++) {
                 int nRow = row + delRow[i];
                 int nCol = col + delCol[i];
 
+                // go to all neighbours if not visited
                 if (nRow >= 0 && nRow < n && nCol >= 0 && nCol < m && isVisited[nRow][nCol] == 0) {
                     isVisited[nRow][nCol] = 1;
+                    // add them with step + 1
                     q.add(new Node(nRow, nCol, steps + 1));
                 }
             }
