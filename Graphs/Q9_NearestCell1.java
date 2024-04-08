@@ -43,7 +43,7 @@ public class Q9_NearestCell1 {
                 // go to all neighbours if not visited
                 if (nRow >= 0 && nRow < n && nCol >= 0 && nCol < m && isVisited[nRow][nCol] == 0) {
                     isVisited[nRow][nCol] = 1;
-                    // add them with step + 1
+                    // add them with step + 1git
                     q.add(new Node(nRow, nCol, steps + 1));
                 }
             }
