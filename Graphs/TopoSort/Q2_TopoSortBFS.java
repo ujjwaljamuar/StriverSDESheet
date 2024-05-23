@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class Q1_TopoSortBFS {
+public class Q2_TopoSortBFS {
     int[] topoSort(int V, ArrayList<ArrayList<Integer>> adjList) {
         // build indegree
         int[] inDegree = new int[V];
@@ -40,7 +40,7 @@ public class Q1_TopoSortBFS {
     }
 
     public static void main(String[] args) {
-        Q1_TopoSortBFS graph = new Q1_TopoSortBFS();
+        Q2_TopoSortBFS graph = new Q2_TopoSortBFS();
 
         int V = 6;
         ArrayList<ArrayList<Integer>> adj = new ArrayList<>();
