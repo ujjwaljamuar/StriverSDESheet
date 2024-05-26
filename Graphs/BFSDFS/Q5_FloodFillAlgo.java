@@ -1,4 +1,4 @@
-package Graphs;
+package BFSDFS;
 
 public class Q5_FloodFillAlgo {
 

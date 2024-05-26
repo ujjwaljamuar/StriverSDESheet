@@ -1,4 +1,4 @@
-package Graphs;
+package BFSDFS;
 import java.util.*;
 
 public class Q1_BFSGraph {
