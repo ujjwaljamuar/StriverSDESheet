@@ -9,7 +9,7 @@ import java.util.Queue;
 public class Q1_ShortestDistUG {
     int[] shortestDistPair(int[][] edges, int n, int m, int src) {
         int[] dist = new int[n];
-        Arrays.fill(dist, Integer.MAX_VALUE);
+        Arrays.fill(dist, (int) (1e9));
 
         List<List<Integer>> adjList = new ArrayList<>();
         for (int i = 0; i < n; i++) {
@@ -41,7 +41,7 @@ public class Q1_ShortestDistUG {
         }
 
         for (int i = 0; i < n; i++) {
-            if (dist[i] == Integer.MAX_VALUE) {
+            if (dist[i] == (int) (1e9)) {
                 dist[i] = -1;
             }
         }
@@ -51,7 +51,7 @@ public class Q1_ShortestDistUG {
 
     int[] shortestDist(int[][] edges, int n, int m, int src) {
         int[] dist = new int[n];
-        Arrays.fill(dist, Integer.MAX_VALUE);
+        Arrays.fill(dist, (int) (1e9));
 
         List<List<Integer>> adjList = new ArrayList<>();
         for (int i = 0; i < n; i++) {
@@ -80,7 +80,7 @@ public class Q1_ShortestDistUG {
         }
 
         for (int i = 0; i < n; i++) {
-            if (dist[i] == Integer.MAX_VALUE) {
+            if (dist[i] == (int) (1e9)) {
                 dist[i] = -1;
             }
         }
