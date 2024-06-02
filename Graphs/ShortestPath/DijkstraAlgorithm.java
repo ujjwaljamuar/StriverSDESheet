@@ -2,7 +2,10 @@ package ShortestPath;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.PriorityQueue;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class DijkstraAlgorithm {
     int[] dijkstraPQ(int V, int S, ArrayList<ArrayList<ArrayList<Integer>>> adj) {
@@ -27,6 +30,36 @@ public class DijkstraAlgorithm {
                     pq.add(new Pair(dist[n], n));
                 }
             }
+        }
+
+        return dist;
+    }
+
+    int[] dijkstraSet(int V, int S, ArrayList<ArrayList<ArrayList<Integer>>> adj) {
+        int[] dist = new int[V];
+        Arrays.fill(dist, (int) 1e9);
+        dist[S] = 0;
+
+        Set<Pair> set = new TreeSet<>();
+        set.add(new Pair(0, S));
+
+        while (!set.isEmpty()) {
+            Pair p = set.stream().findFirst().orElse(null);
+            int dis = p.dist;
+            int node = p.node;
+
+            set.remove(new Pair(dis, node));
+
+            for (ArrayList<Integer> it : adj.get(node)) {
+                int n = it.get(0);
+                int wt = it.get(1);
+
+                if (dis + wt < dist[n]) {
+                    dist[n] = dis + wt;
+                    set.add(new Pair(dist[n], n));
+                }
+            }
+
         }
 
         return dist;
@@ -107,19 +140,31 @@ public class DijkstraAlgorithm {
          * list ->
          * [ [[1, 1], [2, 6]], [[2, 3], [0, 1]], [[1, 3], [0, 6]] ]
          */
-        int[] res = graph.dijkstraPQ(V, S, adj);
+        int[] resPQ = graph.dijkstraPQ(V, S, adj);
+        int[] resSet = graph.dijkstraSet(V, S, adj);
 
-        for (int it : res) {
+        for (int it : resPQ) {
+            System.out.print(it + " ");
+        }
+
+        System.out.println();
+
+        for (int it : resSet) {
             System.out.print(it + " ");
         }
     }
 
-    class Pair {
+    class Pair implements Comparable<Pair> {
         int dist, node;
 
         Pair(int _d, int _n) {
             this.dist = _d;
             this.node = _n;
+        }
+
+        @Override
+        public int compareTo(Pair other) {
+            return Integer.compare(this.dist, other.dist);
         }
     }
 }
