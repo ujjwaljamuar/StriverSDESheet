@@ -3,7 +3,7 @@ package ShortestPath;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class Q4_ShortestPathBinaryGrid {
+public class Q5_ShortestPathBinaryGrid {
     int ShortestPath(int[] src, int[] desn, int[][] grid) {
         int n = grid.length;
         int m = grid[0].length;
@@ -52,12 +52,11 @@ public class Q4_ShortestPathBinaryGrid {
                 }
             }
         }
-
         return -1;
     }
 
     public static void main(String[] args) {
-        Q4_ShortestPathBinaryGrid graph = new Q4_ShortestPathBinaryGrid();
+        Q5_ShortestPathBinaryGrid graph = new Q5_ShortestPathBinaryGrid();
 
         int[] source = { 0, 1 };
         int[] destination = { 2, 2 };
