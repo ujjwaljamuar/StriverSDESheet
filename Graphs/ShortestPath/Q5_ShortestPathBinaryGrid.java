@@ -72,7 +72,7 @@ public class Q5_ShortestPathBinaryGrid {
         System.out.println(graph.ShortestPath(source, destination, grid));
     }
 
-    class Tuple {
+    private class Tuple {
         int distance, row, col;
 
         Tuple(int _d, int _r, int _c) {
