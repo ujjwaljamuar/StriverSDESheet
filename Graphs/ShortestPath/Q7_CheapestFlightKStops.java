@@ -65,7 +65,6 @@ public class Q7_CheapestFlightKStops {
         int[][] flights={{0, 1, 100}, {1, 2, 100}, {2, 0, 100}, {1, 3, 600}, {2, 3, 200}};
 
         System.out.println(graph.CheapestFLight(n,flights,src,dst,K));
-
     }
 
     private class Tuple{
