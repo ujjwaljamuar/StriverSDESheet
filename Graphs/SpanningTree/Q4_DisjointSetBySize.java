@@ -36,19 +36,14 @@ public class Q4_DisjointSetBySize {
                 size.set(ulp_v, size.get(ulp_u) + size.get(ulp_v));
             }
     
-            else if (size.get(ulp_v) < size.get(ulp_u)) {
+            else{
                 parent.set(ulp_v, ulp_u);
                 size.set(ulp_u, size.get(ulp_u) + size.get(ulp_v));
             }
-    
-            else {
-                parent.set(ulp_v, ulp_u);
-                int sizeU = size.get(ulp_u);
-                size.set(ulp_u, sizeU + 1);
-            }
+
         }
     }
-    
+
     public static void main(String[] args) {
         DisjointSet ds = new DisjointSet(7);
 
