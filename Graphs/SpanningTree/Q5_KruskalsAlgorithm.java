@@ -96,7 +96,7 @@ public class Q5_KruskalsAlgorithm {
 
         DisjointSet(int n) {
             for (int i = 0; i <= n; i++) {
-                size.add(0);
+                size.add(1);
                 parent.add(i);
             }
         }
