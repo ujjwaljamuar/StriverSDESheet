@@ -65,7 +65,6 @@ public class Q10_MakingLargeIsland {
                 }
 
                 max = Math.max(max, sizeTotal + 1);
-
             }
         }
 
@@ -73,14 +72,35 @@ public class Q10_MakingLargeIsland {
         for (int cellNo = 0; cellNo < n * n; cellNo++) {
             max = Math.max(max, ds.size.get(ds.findUPar(cellNo)));
         }
-
         return max;
-
     }
 
     private boolean isValid(int newRow, int newCol, int n) {
         return newRow >= 0 && newRow < n && newCol >= 0 && newCol < n;
     }
+
+    /*
+    If value is 1, check all 4 adjacents, if 1 found do unionUsingSizeorRank
+    
+    step2 -
+    if the value is 0, check 4 adjacents if found 1, insert ultimate Par in
+    Hashset
+    This process will add the adjacent components to our answer.
+    
+    Now Iterate through the hashset and add size of each ultimate Par to our ans,
+    add 1 extra for current cell inclusion.
+    
+    Compare to get the max ans among all prev ans with value 0 and current
+    
+    if matrix does not contain any 0s step 2 will not be executed.
+    
+    For this we run a loop from 0 to n, find ultimate parent.
+    Find the sizes of those ult. parent and take the size of largest
+    
+    Thus we will get the maximum size of the group of connected 1s stored in our
+    answer.
+    
+     */
 
     public static void main(String[] args) {
         Q10_MakingLargeIsland graph = new Q10_MakingLargeIsland();
