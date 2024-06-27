@@ -13,13 +13,16 @@ public class DecimalToBinary {
         return Integer.parseInt(sb.reverse().toString());
     }
 
-    static int binToDec(String str){
+    static int binToDec(String str) {
         int n = str.length();
         int res = 0;
 
-        for(int i = n - 1; i > 0; i--){
-            if(str.charAt(i) == '1'){
-                res += (int)str.charAt(i) * Math.pow(2, i - (n-1));
+        for (int i = n - 1; i >= 0; i--) {
+            if (str.charAt(i) == '1') {
+                int val = Character.getNumericValue(str.charAt(i));
+                int powVal = (int) Math.pow(2, Math.abs(i - (n - 1)));
+
+                res += val * powVal;
             }
         }
 
@@ -32,5 +35,7 @@ public class DecimalToBinary {
         System.out.println(Integer.toBinaryString(16));
 
         System.out.println(binToDec("10000"));
+
+        System.out.println(Integer.parseInt("10000", 2));
     }
 }
