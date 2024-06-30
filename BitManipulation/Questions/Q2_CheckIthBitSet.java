@@ -1,6 +1,6 @@
 package Questions;
 
-public class CheckIthBitSet {
+public class Q2_CheckIthBitSet {
     public static void main(String[] args) {
         int n = 9, i = 2;
 
