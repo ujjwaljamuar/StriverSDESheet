@@ -1,3 +1,4 @@
+package Learning;
 public class DecimalToBinary {
     static int decToBin(int n) {
         StringBuilder sb = new StringBuilder("");
