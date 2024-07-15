@@ -1,5 +1,3 @@
-package StacksAndQueues;
-
 public class Q1_Stacks {
     private class Stackk {
         int size = 10000;
