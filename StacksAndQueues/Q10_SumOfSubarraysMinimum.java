@@ -12,6 +12,7 @@ public class Q10_SumOfSubarraysMinimum {
             int left = i - pse[i];
             int right = nse[i] - i;
 
+            // combinations
             total = (total + (right * left * arr[i]) % mod) % mod;
 
         }
