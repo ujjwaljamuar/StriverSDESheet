@@ -8,7 +8,7 @@ public class Q3_FruitsIntoBasket {
         int maxLen = 0;
         int l = 0, r = 0;
 
-        HashMap<Integer, Integer> hmap = new HashMap<>();
+        Map<Integer, Integer> hmap = new HashMap<>();
 
         while (r < arr.length) {
             if (hmap.containsKey(arr[r])) {
