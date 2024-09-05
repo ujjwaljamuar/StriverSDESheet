@@ -48,6 +48,7 @@ public class Q2_Fractional_Knapsack {
 
     class ItemComparator implements Comparator<Item> {
 
+        @Override
         public int compare(Item a, Item b) {
             double r1 = (double) (a.val) / (double) (a.wt);
             double r2 = (double) (b.val) / (double) (b.wt);
