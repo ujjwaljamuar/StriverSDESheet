@@ -7,6 +7,10 @@ public class Q1_FibonacciNumber {
             return n;
         }
 
+        if (dpArr[n] != -1) {
+            return dpArr[n];
+        }
+
         return dpArr[n] = fibMem(n - 1, dpArr) + fibMem(n - 2, dpArr);
     }
 
