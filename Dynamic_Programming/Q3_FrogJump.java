@@ -2,6 +2,26 @@ import java.util.Arrays;
 
 public class Q3_FrogJump {
 
+    int minimumEnergyOpt(int[] arr, int n){
+        int prev2 = 0;
+        int prev = 0;
+
+        for(int i = 1; i < n; i++){
+            int fs = prev + Math.abs(arr[i] - arr[i-1]);
+            int ss = Integer.MAX_VALUE;
+
+            if(i > 1){
+                ss = prev2 + Math.abs(arr[i]- arr[i-2]);
+            }
+
+            int curr = Math.min(fs, ss);
+            prev2 = prev;
+            prev = curr;
+        }
+
+        return prev;
+    }
+
     int minimumEnergyTab(int[] arr, int n) {
         int[] dp = new int[n];
 
@@ -65,5 +85,6 @@ public class Q3_FrogJump {
         System.out.println(dp.minimumEnergyRec(arr, n - 1));
         System.out.println(dp.minimumEnergyMem(arr, n - 1, dpArr));
         System.out.println(dp.minimumEnergyTab(arr, n));
+        System.out.println(dp.minimumEnergyOpt(arr, n));
     }
 }
