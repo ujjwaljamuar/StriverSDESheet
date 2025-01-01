@@ -2,6 +2,38 @@ import java.util.Arrays;
 
 public class Q4_NinjasTraining {
 
+    int fOpt(int days, int[][] points) {
+        int prev[] = new int[4];
+
+        // Initialize the first day's maximum points based on the available choices
+        prev[0] = Math.max(points[0][1], points[0][2]);
+        prev[1] = Math.max(points[0][0], points[0][2]);
+        prev[2] = Math.max(points[0][0], points[0][1]);
+        prev[3] = Math.max(points[0][0], Math.max(points[0][1], points[0][2]));
+
+        // Iterate through each day starting from the second day
+        for (int day = 1; day < days; day++) {
+            // Initialize an array 'temp' to store the maximum points for the current day
+            int temp[] = new int[4];
+            for (int last = 0; last < 4; last++) {
+                temp[last] = 0; // Initialize the maximum points for the current day and last activity
+                // Consider each possible task for the current day
+                for (int task = 0; task <= 2; task++) {
+                    if (task != last) { // Ensure that the current task is different from the last
+                        // Calculate the points for the current activity and add it to the maximum
+                        // points from the previous day
+                        temp[last] = Math.max(temp[last], points[day][task] + prev[task]);
+                    }
+                }
+            }
+            // Update 'prev' to store the maximum points for the current day
+            prev = temp;
+        }
+
+        // Return the maximum points achievable after all days (last activity is 3)
+        return prev[3];
+    }
+
     int fTab(int days, int[][] points) {
         // Initialize a 2D array 'dp' to store the maximum points
         int[][] dp = new int[days][4];
@@ -100,8 +132,10 @@ public class Q4_NinjasTraining {
         // return ansMem;
 
         int ansTab = fTab(N, points);
-        return ansTab;
+        // return ansTab;
 
+        int ansOpt = fOpt(N, points);
+        return ansOpt;
     }
 
     public static void main(String[] args) {
@@ -114,3 +148,18 @@ public class Q4_NinjasTraining {
         System.out.println(ans);
     }
 }
+
+/*
+ * - Memoization
+ * Time Complexity: O(N*4*3)
+ * Space Complexity: O(N) + O(N*4)
+ * 
+ * - Tabulation
+ * Time Complexity: O(N*4*3)
+ * Space Complexity: O(N*4)
+ * 
+ * - Space Optimized
+ * Time Complexity: O(N*4*3)
+ * Space Complexity: O(4)
+ * 
+ */
