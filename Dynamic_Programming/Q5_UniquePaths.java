@@ -1,6 +1,24 @@
 import java.util.Arrays;
 
 public class Q5_UniquePaths {
+    int countWaysUtilMem(int i, int j, int[][] dp) {
+        if (i == 0 && j == 0) {
+            return 1;
+        }
+
+        if (i < 0 || j < 0) {
+            return 0;
+        }
+
+        if (dp[i][j] != -1) {
+            return dp[i][j];
+        }
+
+        int left = countWaysUtilRec(i, j - 1);
+        int up = countWaysUtilRec(i - 1, j);
+
+        return dp[i][j] = left + up;
+    }
 
     int countWaysUtilRec(int i, int j) {
         if (i == 0 && j == 0) {
@@ -19,7 +37,18 @@ public class Q5_UniquePaths {
 
     int countWays(int m, int n) {
         // Start the recursive calculation from the bottom-right cell (m-1, n-1)
-        return countWaysUtilRec(m - 1, n - 1);
+        // return countWaysUtilRec(m - 1, n - 1);
+
+        // Memoization
+        // Create a 2D DP array to store the results
+        int dp[][] = new int[m][n];
+
+        // Initialize the DP array with -1 to indicate uncomputed values
+        for (int[] row : dp)
+            Arrays.fill(row, -1);
+
+        return countWaysUtilMem(m - 1, n - 1, dp);
+
     }
 
     public static void main(String[] args) {
