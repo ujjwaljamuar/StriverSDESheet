@@ -2,6 +2,29 @@ import java.util.Arrays;
 
 public class Q6_UniquePathsII {
 
+    int findPathsMem(int i, int j, int[][] grid, int[][] dp) {
+        if (i >= 0 && j >= 0 && grid[i][j] == 1) {
+            return 0;
+        }
+
+        if (i == 0 && j == 0) {
+            return 1;
+        }
+
+        if (i < 0 || j < 0) {
+            return 0;
+        }
+
+        if (dp[i][j] != -1) {
+            return dp[i][j];
+        }
+
+        int up = findPathsMem(i - 1, j, grid, dp);
+        int left = findPathsMem(i, j - 1, grid, dp);
+
+        return dp[i][j] = up + left;
+    }
+
     int findPaths(int i, int j, int[][] grid) {
         if (i >= 0 && j >= 0 && grid[i][j] == 1) {
             return 0;
@@ -31,7 +54,8 @@ public class Q6_UniquePathsII {
             Arrays.fill(rows, -1);
         }
 
-        return findPaths(m - 1, n - 1, obstacleGrid);
+        // return findPaths(m - 1, n - 1, obstacleGrid);
+        return findPathsMem(m - 1, n - 1, obstacleGrid, dp);
     }
 
     public static void main(String[] args) {
