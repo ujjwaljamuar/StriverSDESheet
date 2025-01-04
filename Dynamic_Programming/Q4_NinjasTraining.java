@@ -119,7 +119,7 @@ public class Q4_NinjasTraining {
 
     int ninjasTraining(int N, int[][] points) {
         // Recursion
-        int ansRec = fRecur(N - 1, 3, points);
+        // int ansRec = fRecur(N - 1, 3, points);
         // return ansRec;
 
         // memoization
@@ -128,10 +128,10 @@ public class Q4_NinjasTraining {
             Arrays.fill(row, -1);
         }
 
-        int ansMem = fMem(N - 1, 3, points, dp);
+        // int ansMem = fMem(N - 1, 3, points, dp);
         // return ansMem;
 
-        int ansTab = fTab(N, points);
+        // int ansTab = fTab(N, points);
         // return ansTab;
 
         int ansOpt = fOpt(N, points);
