@@ -1,6 +1,38 @@
 import java.util.Arrays;
 
 public class Q6_UniquePathsII {
+    int findPathsTab(int n, int m, int[][] maze, int[][] dp) {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                // Base conditions
+                if (i > 0 && j > 0 && maze[i][j] == 1) {
+                    dp[i][j] = 0; // If there's an obstacle, no paths can go through here.
+                    continue;
+                }
+                if (i == 0 && j == 0) {
+                    dp[i][j] = 1; // There's one valid path to the start cell.
+                    continue;
+                }
+
+                int up = 0;
+                int left = 0;
+
+                // Check if moving up is possible
+                if (i > 0)
+                    up = dp[i - 1][j];
+
+                // Check if moving left is possible
+                if (j > 0)
+                    left = dp[i][j - 1];
+
+                // Calculate the number of paths by adding paths from above and from the left
+                dp[i][j] = up + left;
+            }
+        }
+
+        // The final result is stored in the bottom-right cell of the DP matrix
+        return dp[n - 1][m - 1];
+    }
 
     int findPathsMem(int i, int j, int[][] grid, int[][] dp) {
         if (i >= 0 && j >= 0 && grid[i][j] == 1) {
@@ -55,7 +87,8 @@ public class Q6_UniquePathsII {
         }
 
         // return findPaths(m - 1, n - 1, obstacleGrid);
-        return findPathsMem(m - 1, n - 1, obstacleGrid, dp);
+        // return findPathsMem(m - 1, n - 1, obstacleGrid, dp);
+        return findPathsTab(m, n, obstacleGrid, dp);
     }
 
     public static void main(String[] args) {
