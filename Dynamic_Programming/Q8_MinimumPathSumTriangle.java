@@ -2,6 +2,37 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Q8_MinimumPathSumTriangle {
+    int findMinPathSumOpt(List<List<Integer>> triangle, int n) {
+        // Create two arrays to store intermediate results: front and cur
+        int[] front = new int[n]; // Stores the results for the current row
+        int[] cur = new int[n]; // Stores the results for the next row
+
+        // Initialize the front array with the values from the bottom row of the
+        // triangle
+        for (int j = 0; j < n; j++) {
+            front[j] = triangle.get(n - 1).get(j);
+        }
+
+        // Starting from the second to last row, calculate the minimum path sum for each
+        // element
+        for (int i = n - 2; i >= 0; i--) {
+            for (int j = i; j >= 0; j--) {
+                // Calculate the two possible paths: moving down or moving diagonally
+                int down = triangle.get(i).get(j) + front[j];
+                int diagonal = triangle.get(i).get(j) + front[j + 1];
+
+                // Store the minimum of the two paths in the cur array
+                cur[j] = Math.min(down, diagonal);
+            }
+
+            // Update the front array with the values from the cur array for the next row
+            front = cur.clone();
+        }
+
+        // The result is stored at the top of the front array
+        return front[0];
+    }
+
     int findMinPathSumTab(List<List<Integer>> triangle, int n) {
         // Create a 2D array to store intermediate results
         int dp[][] = new int[n][n];
@@ -74,7 +105,9 @@ public class Q8_MinimumPathSumTriangle {
 
         // return findMinPathSumMem(0, 0, n, triangle, dp);
 
-        return findMinPathSumTab(triangle, n);
+        // return findMinPathSumTab(triangle, n);
+
+        return findMinPathSumOpt(triangle, n);
     }
 
     public static void main(String[] args) {
