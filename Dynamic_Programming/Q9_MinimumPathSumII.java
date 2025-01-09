@@ -1,6 +1,56 @@
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public class Q9_MinimumPathSumII {
+    int findPathSumOpt(int[][] matrix) {
+        int n = matrix.length;
+        int m = matrix[0].length;
+
+        List<Integer> prev = new ArrayList<>(Collections.nCopies(m, 0));
+        List<Integer> cur = new ArrayList<>(Collections.nCopies(m, 0));
+
+        // Initializing the first row - base condition
+        for (int j = 0; j < m; j++) {
+            prev.set(j, matrix[0][j]);
+        }
+
+        for (int i = 1; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                int up = matrix[i][j] + prev.get(j);
+
+                int leftDiagonal = matrix[i][j];
+                if (j - 1 >= 0) {
+                    leftDiagonal += prev.get(j - 1);
+                } else {
+                    leftDiagonal += (int) 1e9;
+                }
+
+                int rightDiagonal = matrix[i][j];
+                if (j + 1 < m) {
+                    rightDiagonal += prev.get(j + 1);
+                } else {
+                    rightDiagonal += (int) 1e9;
+                }
+
+                // Store the maximum of the three paths in cur
+                cur.set(j, Math.min(up, Math.min(leftDiagonal, rightDiagonal)));
+            }
+
+            // Update the prev list with the values from the cur list for the next row
+            prev = new ArrayList<>(cur);
+        }
+
+        int mini = Integer.MAX_VALUE;
+
+        for (int j = 0; j < m; j++) {
+            mini = Math.min(mini, prev.get(j));
+        }
+
+        return mini;
+    }
+
     int findPathSumTab(int[][] matrix) {
         int n = matrix.length;
         int m = matrix[0].length;
@@ -100,7 +150,9 @@ public class Q9_MinimumPathSumII {
 
         // return mini;
 
-        return findPathSumTab(matrix);
+        // return findPathSumTab(matrix);
+
+        return findPathSumOpt(matrix);
     }
 
     public static void main(String[] args) {
