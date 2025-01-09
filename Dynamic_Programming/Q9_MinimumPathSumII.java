@@ -1,4 +1,26 @@
+import java.util.Arrays;
+
 public class Q9_MinimumPathSumII {
+    int findPathSumMem(int i, int j, int[][] grid, int n, int m, int[][] dp) {
+        if (j < 0 || j >= m) {
+            return (int) 1e9;
+        }
+
+        if (i == 0) {
+            return grid[0][j];
+        }
+
+        if (dp[i][j] != -1) {
+            return dp[i][j];
+        }
+
+        int up = grid[i][j] + findPathSumMem(i - 1, j, grid, n, m, dp);
+        int upl = grid[i][j] + findPathSumMem(i - 1, j - 1, grid, n, m, dp);
+        int upr = grid[i][j] + findPathSumMem(i - 1, j + 1, grid, n, m, dp);
+
+        return dp[i][j] = Math.min(up, Math.min(upl, upr));
+    }
+
     int findPathSumRec(int i, int j, int[][] grid, int n, int m) {
         if (j < 0 || j >= m) {
             return (int) 1e9;
@@ -20,8 +42,16 @@ public class Q9_MinimumPathSumII {
         int m = matrix[0].length;
         int mini = (int) 1e9;
 
+        int dp[][] = new int[n][m];
+        for (int row[] : dp)
+            Arrays.fill(row, -1);
+
+        // for (int j = 0; j < m; j++) {
+        // mini = Math.min(mini, findPathSumRec(n - 1, j, matrix, n, m));
+        // }
+
         for (int j = 0; j < m; j++) {
-            mini = Math.min(mini, findPathSumRec(n - 1, j, matrix, n, m));
+            mini = Math.min(mini, findPathSumMem(n - 1, j, matrix, n, m, dp));
         }
 
         return mini;
