@@ -1,6 +1,48 @@
 import java.util.Arrays;
 
 public class Q14_SubsetSumEqualTarget {
+    boolean isSubsetSumOpt(int n, int k, int[] arr) {
+        // Create an array to store the previous row of the DP table
+        boolean prev[] = new boolean[k + 1];
+        
+        // Initialize the first row of the DP table
+        prev[0] = true;
+
+        // Initialize the first column of the DP table
+        if (arr[0] <= k) {
+            prev[arr[0]] = true;
+        }
+
+        // Fill in the DP table using bottom-up approach
+        for (int ind = 1; ind < n; ind++) {
+            // Create an array to store the current row of the DP table
+            boolean cur[] = new boolean[k + 1];
+            
+            // Initialize the first column of the current row
+            cur[0] = true;
+            
+            for (int target = 1; target <= k; target++) {
+                // Calculate if the current target can be achieved without taking the current element
+                boolean notTaken = prev[target];
+                
+                // Calculate if the current target can be achieved by taking the current element
+                boolean taken = false;
+                if (arr[ind] <= target) {
+                    taken = prev[target - arr[ind]];
+                }
+                
+                // Store the result in the current row of the DP table
+                cur[target] = notTaken || taken;
+            }
+            
+            // Update the previous row with the current row
+            prev = cur;
+        }
+
+        // The final result is stored in the last cell of the previous row
+        return prev[k];
+    }
+
     boolean isSubsetSumTab(int n, int k, int[] arr) {
         // Create a boolean DP table with dimensions [n][k+1]
         boolean dp[][] = new boolean[n][k + 1];
@@ -90,7 +132,9 @@ public class Q14_SubsetSumEqualTarget {
 
         // return isSubsetSumMem(arr, arr.length - 1, target, dp);
 
-        return isSubsetSumTab(arr.length, target, arr);
+        // return isSubsetSumTab(arr.length, target, arr);
+
+        return isSubsetSumOpt(arr.length, target, arr);
     }
 
     public static void main(String[] args) {
@@ -102,6 +146,5 @@ public class Q14_SubsetSumEqualTarget {
         int target = 30;
 
         System.out.println(dp.isSubsetSum(arr, target));
-
     }
 }
