@@ -92,11 +92,11 @@ public class Q14_SubsetSumEqualTarget {
             return dp[index][target] == 0 ? false : true;
         }
 
-        boolean notTake = isSubsetSumRec(arr, index - 1, target);
+        boolean notTake = isSubsetSumMem(arr, index - 1, target, dp);
         boolean take = false;
 
         if (target >= arr[index]) {
-            take = isSubsetSumRec(arr, index - 1, target - arr[index]);
+            take = isSubsetSumMem(arr, index - 1, target - arr[index], dp);
         }
 
         dp[index][target] = take || notTake ? 0 : 1;
