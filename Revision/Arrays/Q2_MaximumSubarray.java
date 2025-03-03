@@ -1,4 +1,25 @@
 public class Q2_MaximumSubarray {
+    long maxSumSubArrayKadanesAlgo(int[] arr) {
+        long max = Long.MIN_VALUE;
+        long sum = 0;
+
+        // go on and take every element,
+        // if at any time sum goes below 0, re initialize because thats of no use
+        for (int i = 0; i < arr.length; i++) {
+            sum += arr[i];
+
+            if (sum > max) {
+                max = sum;
+            }
+
+            if (sum < 0) {
+                sum = 0;
+            }
+        }
+
+        return max;
+    }
+
     int maxSubarraySumBetter(int[] arr) {
         int maxi = Integer.MIN_VALUE; // maximum sum
 
@@ -43,6 +64,7 @@ public class Q2_MaximumSubarray {
         int[] arr = { -2, 1, -3, 4, -1, 2, 1, -5, 4 };
 
         // System.out.println(ms.maxSumSubArrBrute(arr));
-        System.out.println(ms.maxSubarraySumBetter(arr));
+        // System.out.println(ms.maxSubarraySumBetter(arr));
+        System.out.println(ms.maxSumSubArrayKadanesAlgo(arr));
     }
 }
