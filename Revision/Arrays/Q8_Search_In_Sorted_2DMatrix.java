@@ -28,9 +28,9 @@ public class Q8_Search_In_Sorted_2DMatrix {
             // mid = low + ((high - low)/2);
             mid = low + ((high - low) >> 1);
 
-            if (mid == target) {
+            if (arr[mid] == target) {
                 return true;
-            } else if (target > mid) {
+            } else if (target > arr[mid]) {
                 low = mid + 1;
             } else {
                 high = mid - 1;
