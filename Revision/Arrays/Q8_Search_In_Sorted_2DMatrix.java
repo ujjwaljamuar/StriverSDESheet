@@ -1,4 +1,15 @@
 public class Q8_Search_In_Sorted_2DMatrix {
+    boolean searchOptimal1(int[][] matrix, int target) {
+        // check if its between the range of each row
+        for (int i = 0; i < matrix.length; i++) {
+            if (target >= matrix[i][0] && target < matrix[i][matrix.length - 1]) {
+                return binarySearch(matrix[i], target);
+            }
+        }
+
+        return false;
+    }
+
     boolean searchBrute(int[][] matrix, int target) {
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix[0].length; j++) {
