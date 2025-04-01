@@ -1,4 +1,29 @@
 public class Q8_Search_In_Sorted_2DMatrix {
+    boolean searchOptimal2(int[][] matrix, int target){
+        // flatten the array connect all elements
+        // get row by mid/m, and col by mid % m
+        int n = matrix.length;
+        int m = matrix[0].length;
+        int mid, low = 0, high = (n*m) - 1;
+        int row, col;
+        while(low <= high){
+            mid = low + ((high -low) >> 1);
+            row = mid/m;
+            col = mid % m;
+
+            if(matrix[row][col] == target){
+                return true;
+            }
+            else if(target > matrix[row][col]){
+                low = mid + 1;
+            }
+            else{
+                high = mid - 1;
+            }
+        }
+        return false;
+    }
+
     boolean searchOptimal1(int[][] matrix, int target) {
         // check if its between the range of each row
         for (int i = 0; i < matrix.length; i++) {
@@ -51,6 +76,7 @@ public class Q8_Search_In_Sorted_2DMatrix {
         };
 
         // System.out.println(bs.searchBrute(matrix, target));
-        System.out.println(bs.searchOptimal1(matrix, target));
+        // System.out.println(bs.searchOptimal1(matrix, target));
+        System.out.println(bs.searchOptimal2(matrix, target));
     }
 }
