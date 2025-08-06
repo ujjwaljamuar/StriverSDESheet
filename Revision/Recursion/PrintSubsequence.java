@@ -23,6 +23,19 @@ public class PrintSubsequence {
         return ans;
     }
 
+    static void solve(int i, String s, String f) {
+        if (i == s.length()) {
+            System.out.print(f + " ");
+            return;
+        }
+        // picking
+        // f = f + s.charAt(i);
+        solve(i + 1, s, f + s.charAt(i));
+        // poping out while backtracking
+        // f.pop_back();
+        solve(i + 1, s, f);
+    }
+
     public static void main(String[] args) {
         System.out.println(subseq(0, new ArrayList<>()));
     }
