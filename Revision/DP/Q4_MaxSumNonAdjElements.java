@@ -1,5 +1,7 @@
 package DP;
 
+import java.util.Arrays;
+
 // House Robber - I
 public class Q4_MaxSumNonAdjElements {
     static int robUtil(int index, int[] nums) {
@@ -23,6 +25,36 @@ public class Q4_MaxSumNonAdjElements {
         return robUtil(nums.length - 1, nums);
     }
 
+    // memoization
+    static int robUtilMem(int index, int[] nums, int[] dp) {
+        if (index == 0) {
+            return nums[index];
+        }
+
+        // edge case if it go below 0 because of ind - 2
+        if (index < 0) {
+            return 0;
+        }
+
+        // if element exists in dp array
+        if (dp[index] != -1) {
+            return dp[index];
+        }
+
+        int pick = nums[index] + robUtilMem(index - 2, nums, dp);
+
+        int notPick = 0 + robUtilMem(index - 1, nums, dp);
+
+        return dp[index] = Math.max(pick, notPick);
+    }
+
+    static int houseRobberMem(int[] nums) {
+        int[] dp = new int[nums.length];
+        Arrays.fill(dp, -1);
+
+        return robUtilMem(nums.length - 1, nums, dp);
+    }
+
     public static void main(String[] args) {
         int[] nums = {
                 114, 117, 207, 117, 235, 82, 90, 67, 143, 146, 53, 108, 200, 91, 80, 223, 58, 170, 110, 236, 81, 90,
@@ -30,6 +62,6 @@ public class Q4_MaxSumNonAdjElements {
                 241, 202, 144, 240 }; // return 4173
         // int[] nums = { 2, 7, 9, 3, 1 };
 
-        System.out.println(houseRobber(nums));
+        System.out.println(houseRobberMem(nums));
     }
 }
