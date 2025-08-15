@@ -55,6 +55,28 @@ public class Q4_MaxSumNonAdjElements {
         return robUtilMem(nums.length - 1, nums, dp);
     }
 
+    // Tabulation
+    static int robUtilTab(int[] nums) {
+        int[] dp = new int[nums.length];
+        Arrays.fill(dp, -1);
+
+        // in tabulation we go from bottom to up, so we will start from 0;
+        dp[0] = nums[0];
+
+        for (int i = 1; i < nums.length; i++) {
+            int pick = nums[i];
+            if (i > 1) {
+                pick = pick + dp[i - 2];
+            }
+
+            int notPick = 0 + dp[i - 1];
+
+            dp[i] = Math.max(pick, notPick);
+        }
+
+        return dp[nums.length - 1];
+    }
+
     public static void main(String[] args) {
         int[] nums = {
                 114, 117, 207, 117, 235, 82, 90, 67, 143, 146, 53, 108, 200, 91, 80, 223, 58, 170, 110, 236, 81, 90,
@@ -62,6 +84,6 @@ public class Q4_MaxSumNonAdjElements {
                 241, 202, 144, 240 }; // return 4173
         // int[] nums = { 2, 7, 9, 3, 1 };
 
-        System.out.println(houseRobberMem(nums));
+        System.out.println(robUtilTab(nums));
     }
 }
