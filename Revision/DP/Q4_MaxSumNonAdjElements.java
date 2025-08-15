@@ -77,6 +77,27 @@ public class Q4_MaxSumNonAdjElements {
         return dp[nums.length - 1];
     }
 
+    static int robUtilOpt(int[] nums) {
+        int prev = nums[0];
+        int prev2 = 0;
+
+        for (int i = 1; i < nums.length; i++) {
+            int pick = nums[i];
+            if (i > 1) {
+                pick = pick + prev2;
+            }
+
+            int notPick = 0 + prev;
+
+            int curr_i = Math.max(pick, notPick);
+
+            prev2 = prev;
+            prev = curr_i;
+        }
+
+        return prev;
+    }
+
     public static void main(String[] args) {
         int[] nums = {
                 114, 117, 207, 117, 235, 82, 90, 67, 143, 146, 53, 108, 200, 91, 80, 223, 58, 170, 110, 236, 81, 90,
@@ -84,6 +105,6 @@ public class Q4_MaxSumNonAdjElements {
                 241, 202, 144, 240 }; // return 4173
         // int[] nums = { 2, 7, 9, 3, 1 };
 
-        System.out.println(robUtilTab(nums));
+        System.out.println(robUtilOpt(nums));
     }
 }
