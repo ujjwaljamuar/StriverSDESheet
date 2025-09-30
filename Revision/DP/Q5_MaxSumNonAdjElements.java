@@ -3,7 +3,7 @@ package DP;
 import java.util.Arrays;
 
 // House Robber - I
-public class Q4_MaxSumNonAdjElements {
+public class Q5_MaxSumNonAdjElements {
     static int robUtil(int index, int[] nums) {
         if (index == 0) {
             return nums[index];
