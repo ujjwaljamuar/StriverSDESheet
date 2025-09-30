@@ -2,7 +2,7 @@ package DP;
 
 import java.util.Arrays;
 
-public class CoinChange2 {
+public class Q2_CoinChange2 {
     /*
      * Optimized
      * Time Complexity: O(N*T)
