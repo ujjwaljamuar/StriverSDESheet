@@ -2,7 +2,7 @@ package DP;
 
 import java.util.Arrays;
 
-public class LongestIncreasingSequence {
+public class Q3_LongestIncreasingSequence {
     // Function to find the length of the longest increasing subsequence
     static int getAns(int arr[], int n, int ind, int prev_index, int[][] dp) {
         // Base condition
