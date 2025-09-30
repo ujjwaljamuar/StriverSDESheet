@@ -3,7 +3,7 @@ package DP;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CombinationSum {
+public class Q4_CombinationSum {
     static void util(int index, int target, int[] arr, List<Integer> list, List<List<Integer>> result) {
         if (index == arr.length) {
             if (target == 0) {
