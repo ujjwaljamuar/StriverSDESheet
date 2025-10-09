@@ -35,9 +35,14 @@ public class Q5_Detect_Cycle_UG_BFS {
 
     boolean detectCycle(List<List<Integer>> adjList, int n, int startIndex) {
         boolean[] vis = new boolean[n + 1];
-        boolean isCycle = detectCycleBFSUtil(adjList, n, startIndex, vis);
+        // boolean isCycle = detectCycleBFSUtil(adjList, n, startIndex, vis);
+        for(int i=0;i<=n;i++)
+            if(vis[i]==false) 
+                if(detectCycleBFSUtil(adjList, n,startIndex, vis)) 
+                    return true;
+    
+        return false;
 
-        return isCycle;
 
     }
 
