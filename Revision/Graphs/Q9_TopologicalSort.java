@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Stack;
 
+// Stack method will only work if there is guaranteed no cycle in the Graph
+
 public class Q9_TopologicalSort {
     void dfs(int node, boolean[] vis, ArrayList<ArrayList<Integer>> adj, Stack<Integer> st) {
         vis[node] = true;
