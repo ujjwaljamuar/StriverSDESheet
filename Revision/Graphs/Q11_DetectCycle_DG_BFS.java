@@ -36,7 +36,7 @@ public class Q11_DetectCycle_DG_BFS {
             }
         }
 
-        if (topo.length == V) {
+        if (count == V) {
             return true;
         } else {
             return false;
